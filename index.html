@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Compressed Foundation CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg==" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Section for the title -->
+    <section class="title top-bar">
+        <header class="grid-x top-bar-left">Pokemon! Trivia</header>
+    </section>
+
+    <!-- Main section. Contains timer, images and answers -->
+    <section class="main grid-container grid-container-padding">
+        <div class="grid-x">
+            <h1 class="cell small-8">Who's that Pokemon?!</h1>
+            <ul class="player-info cell menu no-bullet align-right small-3">
+                <!-- <li><a href="">Lives: <span class="lives">0</span></a></li> -->
+                <li><a href="">Points: <span class="points">0</span></a></li>
+            </ul>
+        </div>
+        <h2 class="subtitle grid-x text-center">Round: <span class="roundNum">1</span></h2>
+        <div class="grid-x">
+            <h3>Time left: <span class="timer">10</span></h3>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="upper-main callout cell small-6">
+                <!-- Div where the timer will be shown -->
+                <!-- Div where the photo will be shown -->
+                <div class="text-center pkmn-photo">
+                    <img class="" id="pkmn-image" src="assets/images/pokeball.png" alt="pokeball">
+                </div>
+            </div>
+            <!-- Div where the answers will be shown -->
+            <div class="answer-div cell small-4 align-right">
+                <!-- List for the answers -->
+                <ul class="no-bullet cell">
+                    <li class="cell"><button class="button pkmn expanded first">Who's</button></li>
+                    <li class="cell"><button class="button pkmn expanded second">That</button></li>
+                    <li class="cell"><button class="button pkmn expanded third">Pokemon</button></li>
+                    <li class="cell"><button class="button pkmn expanded fourth">?</button></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- Div for the submit button -->
+        <div class="submit-div grid-x grid-margin-x text-center">
+            <button class="submit-button button alert expanded">Start!</button>
+        </div>
+    </section>
+    <!-- Footer section -->
+    <section class="footer grid-x">
+        <footer></footer>
+    </section>
+
+    <!-- jQuery -->
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+</html>
