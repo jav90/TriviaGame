@@ -101,44 +101,64 @@ $(document).ready(function(){
     //Generates a random order to use
     shuffled_array = shuffle(pokemon_array);
     console.log(shuffled_array);
-    let newDiv = $('<div class="newDiv cell align-center">');
+    let newDiv = $('<div class="newDiv cell align-center h2">');
+    let newImg = $('<img class="pkmn-image newImg">');
     //When the submit button is clicked the game starts
-    $(".submit-button").on('click', function(){
+    $(".submit-button").unbind().on('click', function(){
         //Removes the div with the answer
         $('.newDiv').empty();
         $('.newDiv').remove();
+        
         $('.roundNum').text(" "+(index+1));
         //Changes the start button text to submit
         console.log("1 ciclo " + index);
+        //Hides the submit/next button
         $('.submit-button').hide();
+        //Activates the buttons with the answers
+        $('.pkmn').removeAttr('disabled');
         $('.pkmn').addClass('active');
+        //Randomly assigns a number between 0 and the lenght of the shuffled array to select the fake answers
         let shuffle_1 = Math.floor(Math.random()*shuffled_array.length);
         let shuffle_2 = Math.floor(Math.random()*shuffled_array.length);
         let shuffle_3 = Math.floor(Math.random()*shuffled_array.length);
         console.log("1 " +shuffle_1+" 2 " +shuffle_2+" 3 " +shuffle_3);
+        //Creates an array with the right answer and the fake ones mixed in
         shuffled_answers = [shuffled_array[index],shuffled_array[shuffle_1],shuffled_array[shuffle_2], shuffled_array[shuffle_3]];
+        //Shuffles the answers so that the order is always different
         shuffled_answers = shuffle(shuffled_answers);
-        $('#pkmn-image').attr('src',shuffled_array[index].source);
+        //Adds the attributes to the image and the buttons
+        $('.pkmn-image').attr('src',shuffled_array[index].source);
         $('.button.first').text(shuffled_answers[0].name);
         $('.button.second').text(shuffled_answers[1].name);
         $('.button.third').text(shuffled_answers[2].name);
         $('.button.fourth').text(shuffled_answers[3].name);
         console.log("3 index " + index);
+        //Sets the timer to 10 and displays it on the screen
         timer = 10;
         $('.timer').text(timer);
+        //Starts the countdown
         intervalId = setInterval(count,1000);
-        $('.submit-div').prepend(newDiv);
+        //Adds the empty div to the answer section
+        $('.answer').prepend(newDiv);
+        //Unbinds so the clicks are only registered once
         $('.pkmn.active').unbind().on('click', function(event){
             console.log(event);
             console.log("5 " +this.innerText)
             console.log("6 " +shuffled_array[index].name)
+            //Compares the button's text with the right answer
             if(this.innerText === shuffled_array[index].name){
+                //If it's correct it hides the main section and shows a message congratulating the player
+                $('.main').hide();
+                newImg.attr('src',shuffled_array[index].source)
+                $('.answer').append(newImg);
                 console.log("7 correct");
                 $(newDiv).text("Correct!");
+                //Increases the points
                 points++;
                 $('.points').text(points);                
             }else{
-                $(newDiv).text("Incorrect!");
+                //If the answer is incorrect shows a message
+                $(newDiv).text("Incorrect! It's "+shuffled_array[index].name+"!");
                 //lives--;
                 console.log("8 incorrect");
             }
@@ -175,19 +195,19 @@ function shuffle(arr1) {
 }
 
 function reset(){
-    
+    $('.main').show();
+    $('.newImg').empty();
+    $('.newImg').remove();
     //Adds 1 to index to move to next pokemon
     index++;
     console.log("reset");
+    //Inactivates the pkmn buttons
+    $('.pkmn').attr('disabled','disabled');
     //Shows submit button
     $('.submit-button').show();
     //Changes text of start button to next
     $('.submit-button').text("Next!");
-    //Inactivates the pkmn buttons
-    $('.pkmn').removeClass('active');
-    //Removes the div with the answer
-    // $('.newDiv').empty();
-    //$('.newDiv').remove();
+
 }
 
 function count() {
@@ -210,13 +230,6 @@ function timeOut(){
     //Makes sure timer shows 0
     $('.timer').text(0);
     //Shows the 
-    $('.newDiv').text("Time out! The correct answer was "+shuffled_array[index].name);
+    $('.newDiv').text("Time out! It's "+shuffled_array[index].name+"!");
+    $('.pkmn').removeClass('active');
 }
-// if(timer === 0){
-        //     $(newDiv).text("Time out! The correct answer was "+shuffled_array[index].name);
-        //     //lives--;
-        //     console.log("8 incorrect");
-        //     $('.submit-div').prepend(newDiv);
-        //     index++;
-        //     setTimeout(reset, 2000);
-        // }

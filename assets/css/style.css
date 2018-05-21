@@ -14,7 +14,7 @@ body{
     background-color: white;
 }
 
-#pkmn-image{
+.pkmn-image{
     max-height: 350px;
 }
 
@@ -24,8 +24,4 @@ body{
 
 .callout{
     border-radius: 2em;
-}
-
-#alert{
-    color: #e3350d;
 }
