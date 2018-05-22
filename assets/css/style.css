@@ -9,6 +9,11 @@ body{
     color: white;   
 }
 
+button.pkmn{
+    background-color: #313131;
+    color: white;  
+}
+
 .main{
 
     background-color: white;

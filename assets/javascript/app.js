@@ -254,6 +254,6 @@ function endgame(){
     var congrats_image = $('<img src="assets/images/Pikachu_dance_by_mnrart-d4kgxsd.gif">')
     $('.newDiv').append(congrats);
     $('.newDiv').append(results);
-    $('.newDiv').append(congrats_image);
+    $('.newDiv').append(congrats_image); 
     
 }
