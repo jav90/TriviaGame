@@ -95,14 +95,16 @@ var shuffled_array = [];
 var timer = 10;
 var intervalId;
 var points = 0;
+var newDiv;
+var newImg;
 
 //Starts when the document is ready
 $(document).ready(function(){
     //Generates a random order to use
     shuffled_array = shuffle(pokemon_array);
     console.log(shuffled_array);
-    let newDiv = $('<div class="newDiv cell align-center h2">');
-    let newImg = $('<img class="pkmn-image newImg">');
+    newDiv = $('<div class="newDiv cell align-center h2">');
+    newImg = $('<img class="pkmn-image newImg">');
     //When the submit button is clicked the game starts
     $(".submit-button").unbind().on('click', function(){
         //Removes the div with the answer
@@ -157,6 +159,9 @@ $(document).ready(function(){
                 points++;
                 $('.points').text(points);                
             }else{
+                $('.main').hide();
+                newImg.attr('src',shuffled_array[index].source)
+                $('.answer').append(newImg);
                 //If the answer is incorrect shows a message
                 $(newDiv).text("Incorrect! It's "+shuffled_array[index].name+"!");
                 //lives--;
@@ -225,7 +230,9 @@ function count() {
 }
 
 function timeOut(){
-    
+    $('.main').hide();
+    newImg.attr('src',shuffled_array[index].source)
+    $('.answer').append(newImg);
     console.log("Interval clear!");
     //Makes sure timer shows 0
     $('.timer').text(0);
