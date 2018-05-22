@@ -116,6 +116,13 @@ $(document).ready(function(){
         console.log("1 ciclo " + index);
         //Hides the submit/next button
         $('.submit-button').hide();
+        //Adds the empty div to the answer section
+        $('.answer').prepend(newDiv);
+        if(index === 10){
+            clearInterval(intervalId);
+            endgame();
+            return;
+        }
         //Activates the buttons with the answers
         $('.pkmn').removeAttr('disabled');
         $('.pkmn').addClass('active');
@@ -140,8 +147,6 @@ $(document).ready(function(){
         $('.timer').text(timer);
         //Starts the countdown
         intervalId = setInterval(count,1000);
-        //Adds the empty div to the answer section
-        $('.answer').prepend(newDiv);
         //Unbinds so the clicks are only registered once
         $('.pkmn.active').unbind().on('click', function(event){
             console.log(event);
@@ -168,7 +173,7 @@ $(document).ready(function(){
                 console.log("8 incorrect");
             }
             //Starts timeout for next round
-            setTimeout(reset, 2000);
+            setTimeout(reset, 1000);
             //Clears the interval
             clearInterval(intervalId);
         })
@@ -225,7 +230,7 @@ function count() {
         //clears the interval
         clearInterval(intervalId);
         timeOut();
-        setTimeout(reset,2000);
+        setTimeout(reset,1000);
     }
 }
 
@@ -239,4 +244,16 @@ function timeOut(){
     //Shows the 
     $('.newDiv').text("Time out! It's "+shuffled_array[index].name+"!");
     $('.pkmn').removeClass('active');
+}
+
+function endgame(){
+    clearInterval(intervalId);
+    $('.main').hide();
+    var congrats = $('<h2>Final results:</h3>');
+    var results = $('<h3>Points: '+points+'</h3>');
+    var congrats_image = $('<img src="assets/images/Pikachu_dance_by_mnrart-d4kgxsd.gif">')
+    $('.newDiv').append(congrats);
+    $('.newDiv').append(results);
+    $('.newDiv').append(congrats_image);
+    
 }
